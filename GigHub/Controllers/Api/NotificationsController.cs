@@ -8,6 +8,7 @@ using GigHub.Models;
 using Microsoft.AspNet.Identity;
 using System.Data.Entity;
 using AutoMapper;
+using GigHub.Dtos;
 using GigHub.Util;
 
 namespace GigHub.Controllers.Api
