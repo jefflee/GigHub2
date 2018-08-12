@@ -31,7 +31,6 @@ namespace GigHub.Controllers.Api
                 .Include(n => n.Gig.Artist)
                 .ToList();
 
-
             IMapper mapper = MyMapper.Instance.Mapper;
             return notifications.Select(k => mapper.Map<Notification, NotificationDto>(k));
         }
