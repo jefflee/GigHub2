@@ -29,7 +29,25 @@ namespace GigHub.Controllers.Api
                 .Include(n => n.Gig.Artist)
                 .ToList();
 
-            return notifications;
+            return notifications.Select(k => new NotificationDto()
+            {
+                DateTime = k.DateTime,
+                Gig = new GigDto()
+                {
+                    Artist = new UserDto()
+                    {
+                        Id = k.Gig.Artist.Id,
+                        Name = k.Gig.Artist.Name
+                    },
+                    DateTime = k.Gig.DateTime,
+                    Id = k.Gig.Id,
+                    IsCanceled = k.Gig.IsCanceled,
+                    Venue = k.Gig.Venue
+                },
+                OriginalDateTime = k.OriginalDateTime,
+                OriginalVenue = k.OriginalVenue,
+                Type = k.Type
+            });
         }
     }
 }
