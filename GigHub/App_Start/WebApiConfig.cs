@@ -11,7 +11,8 @@ namespace GigHub
     {
         public static void Register(HttpConfiguration config)
         {
-
+            //The return json format is Pascal naming( start with upper case).
+            //We want to use camel naming.( start with lower case)
             var setting = GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings;
             setting.ContractResolver = new CamelCasePropertyNamesContractResolver();
             setting.Formatting = Formatting.Indented;
