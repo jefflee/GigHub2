@@ -75,6 +75,17 @@ span.field-validation-error {
         border-bottom-color: #fff;
     }
 
+    .navbar-inverse .notifications {
+        position: relative;
+    }
+
+    .navbar-inverse .notifications .badge {
+        position: absolute;
+        top: 8px;
+        right: -1px;
+        background-color: #a80a0a;
+    }
+
 .navbar-brand {
     font-weight: 700;
 }
