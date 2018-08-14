@@ -53,6 +53,11 @@ span.field-validation-error {
 }
 
 /* Bootstrap Overrides */
+.popover {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
 .navbar-inverse {
     background-color: #FF4342;
     border-color: #FF4342;
@@ -79,12 +84,12 @@ span.field-validation-error {
         position: relative;
     }
 
-    .navbar-inverse .notifications .badge {
-        position: absolute;
-        top: 8px;
-        right: -1px;
-        background-color: #a80a0a;
-    }
+        .navbar-inverse .notifications .badge {
+            position: absolute;
+            top: 8px;
+            right: -1px;
+            background-color: #a80a0a;
+        }
 
 .navbar-brand {
     font-weight: 700;
@@ -194,3 +199,25 @@ h6,
         .gigs > li:hover .actions {
             display: block;
         }
+
+.popover .popover-content {
+    padding: 0;
+}
+
+.popover ul.notifications {
+    list-style: none;
+    padding-left: 0;
+}
+
+    .popover ul.notifications > li {
+        border-bottom: 1px solid #dddddd;
+        padding: 10px;
+    }
+
+        .popover ul.notifications > li:last-child {
+            border-bottom: none;
+        }
+
+    .popover ul.notifications .highlight {
+        font-weight: bold;
+    }

@@ -52,11 +52,11 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 <script type="text/x-template" id="notifications-template">
-        <ul>
+        <ul class="notifications">
             <%
             _.each(notifications, function(notification){
             if(notification.type == 1){ %>
-                <li><%= notification.gig.artist.name%> has calceled the gig at <%= notification.gig.venue %> at <%= notification.gig.dateTime%>.</li>
+                <li><span class="highlight"><%= notification.gig.artist.name%></span> has calceled the gig at <%= notification.gig.venue %> at <%= moment(notification.gig.dateTime).format("D MMM HH:mm") %>.</li>
             <%  }
             
             else if(notification.type == 2){
@@ -72,12 +72,12 @@
                 
                 if(notification.originalDatetime != notification.gig.dateTime){
                     changes.push('date/time');
-                    originalValues.push(notification.originalDateTime);
-                    newValues.push(notification.gig.dateTime);
+                    originalValues.push(moment(notification.originalDateTime).format("D MMM HH:mm"));
+                    newValues.push(moment(notification.gig.dateTime).format("D MMM HH:mm"));
                 }
                 %>
                 
-                <li><%= notification.gig.artist.name %> has changed the <%= changes.join(' and ') %> of the gig from <%= originalValues.join('/') %> to <%= newValues.join('/') %></li>
+                <li><span class="highlight"><%= notification.gig.artist.name %></span> has changed the <%= changes.join(' and ') %> of the gig from <%= originalValues.join('/') %> to <%= newValues.join('/') %></li>
             <%
             }
 
@@ -107,6 +107,7 @@
                             return html;
                         },
                         placement: "bottom"
+                        //template: '< div class="popover popover-notifications" role="tooltip" > <div class="arrow"></div> <h3 class="popover-title"></h3> <div class="popover-content"></div></div>'
                     });
                 });
         });
