@@ -108,6 +108,12 @@ h6,
   border-color: #2196f3;
   box-shadow: none;
   -webkit-box-shadow: none;
+  transition: none;
+  -webkit-transition: none;
+}
+.form-control:focus {
+  box-shadow: none;
+  -webkit-box-shadow: none;
 }
 .btn {
   -ms-border-radius: 9px;
