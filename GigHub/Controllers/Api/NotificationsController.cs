@@ -37,5 +37,20 @@ namespace GigHub.Controllers.Api
             IMapper mapper = MyMapper.Instance.Mapper;
             return notifications.Select(k => mapper.Map<Notification, NotificationDto>(k));
         }
+
+        [HttpPost]
+        public IHttpActionResult MarkAsRead()
+        {
+            var userId = User.Identity.GetUserId();
+            var notifications = _context.UserNotifications
+                .Where(un => un.UserId == userId )  // && !un.IsRead)  //mark this would be easier to test.
+                .ToList();
+
+            notifications.ForEach(n=> n.Read());
+
+            _context.SaveChanges();
+
+            return Ok();
+        }
     }
 }
