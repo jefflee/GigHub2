@@ -5,12 +5,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Mvc;
 using GigHub.Models;
 using Microsoft.AspNet.Identity;
 
 namespace GigHub.Controllers.Api
 {
-    [Authorize]
+    [System.Web.Http.Authorize]
     public class GigsController : ApiController
     {
         private ApplicationDbContext _context;
@@ -20,7 +21,7 @@ namespace GigHub.Controllers.Api
             _context = new ApplicationDbContext();
         }
 
-        [HttpDelete]
+        [System.Web.Http.HttpDelete]
         public IHttpActionResult Cancel(int id)
         {
             string userId = User.Identity.GetUserId();
