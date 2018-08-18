@@ -1,4 +1,26 @@
-﻿var GigsController = (function GigsConrollerIIFE() {
+﻿var AttendanceService = (function iifeAttendanceService() {
+    var createAttendance = function createAttendanceFunc(gigId, doneAction, failAction) {
+        // WebApi read data from body. It read the key which is empty string to get data.
+        $.post('/api/attendances', { GigId: gigId })
+            .done(doneAction)
+            .fail(failAction);
+    }
+
+    var deleteAttendance = function deleteAttendanceFunc(gigId, doneAction, failAction) {
+        $.ajax({
+            url: "/api/attendances/" + gigId,
+            method: "DELETE"
+        }).done(doneAction)
+            .fail(failAction);
+    }
+
+    return {
+        createAttendance: createAttendance,
+        deleteAttendance: deleteAttendance
+    }
+})();
+
+var GigsController = (function iifeGigsConroller(attendanceService) {
     var button;
 
     var init = function () {
@@ -8,27 +30,14 @@
 
     function toggleAttendances(e) {
         button = $(e.target);
+        var gigId = button.attr("data-gig-id");
+
         if (button.hasClass("btn-default")) {
-            createAttendance();
+            attendanceService.createAttendance(gigId, doneAction, failAction);
         } else {
-            deleteAttendance();
+            attendanceService.deleteAttendance(gigId, doneAction, failAction);
         }
 
-    }
-
-    function createAttendance() {
-        // WebApi read data from body. It read the key which is empty string to get data.
-        $.post('/api/attendances', { GigId: button.attr("data-gig-id") })
-            .done(doneAction)
-            .fail(failAction);
-    }
-
-    function deleteAttendance() {
-        $.ajax({
-            url: "/api/attendances/" + button.attr("data-gig-id"),
-            method: "DELETE"
-        }).done(doneAction)
-            .fail(failAction);
     }
 
     function doneAction() {
@@ -43,4 +52,4 @@
     return {
         init: init
     }
-})();
+})(AttendanceService);
