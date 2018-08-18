@@ -1,4 +1,4 @@
-﻿var GigDetailController = (function iifeGigDetailController() {
+﻿var GigDetailController = (function iifeGigDetailController(followingService) {
 
     var followButton;
 
@@ -8,19 +8,12 @@
 
     function toggleFollowing(e) {
         followButton = $(e.target);
+        var followeeId = followButton.attr("data-user-id");
 
         if (followButton.hasClass("btn-default")) {
-
-            // WebApi read data from body. It read the key which is empty string to get data.
-            $.post('/api/followings', { FolloweeId: followButton.attr("data-user-id") })
-                .done(doneAction)
-                .fail(failAction);
+            followingService.createFollowing(followeeId, doneAction, failAction);
         } else {
-            $.ajax({
-                url: "/api/followings/" + followButton.attr("data-user-id"),
-                method: "DELETE"
-            }).done(doneAction)
-                .fail(failAction);
+            followingService.deleteFollowing(followeeId, doneAction, failAction);
         }
     }
 
@@ -37,4 +30,4 @@
         init: init
     }
 
-})();
+})(FollowingService);
