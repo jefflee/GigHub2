@@ -38,11 +38,6 @@
                     {
                         <span class="label label-warning">Canceled</span>
                     }
-
-                    @if (Model.ShowActtions)
-                    {
-                        <button data-user-id="@gig.ArtistId" class="btn btn-link btn-sm js-toggle-follow">Follow</button>
-                    }
                 </span>
                 <span class="genre">
                     Rock
@@ -50,7 +45,7 @@
                 @if (Model.ShowActtions && gig.IsCanceled == false)
                 {
                     <button data-gig-id="@gig.Id"
-                            class="btn @(Model.Attendances.Contains(gig.Id)?"btn-info":"btn-default") btn-sm pull-right js-toggle-attendance">
+                            class="btn @(Model.Attendances.Contains(gig.Id)?"btn-info":"btn-default") btn-sm js-toggle-attendance">
                         Going?
                     </button>
                 }
@@ -64,17 +59,6 @@
         $(document).ready(function () {
             GigsController.init("#gigs");
 
-            $('.js-toggle-follow').click(function (e) {
-                var button = $(e.target);
-                // WebApi read data from body. It read the key which is empty string to get data.
-                $.post('/api/followings', { FolloweeId: button.attr("data-user-id") })
-                    .done(function () {
-                        button.text('Following');
-                    })
-                    .fail(function () {
-                        alert('Something failed!');
-                    });
-            });
         });
 
     </script>
