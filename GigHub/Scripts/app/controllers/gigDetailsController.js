@@ -3,23 +3,25 @@
     var followButton;
 
     var init = function initFunc() {
-        $('.js-toggle-follow').click(function (e) {
-            followButton = $(e.target);
+        $('.js-toggle-follow').click(toggleFollowing);
+    }
 
-            if (followButton.hasClass("btn-default")) {
+    function toggleFollowing(e) {
+        followButton = $(e.target);
 
-                // WebApi read data from body. It read the key which is empty string to get data.
-                $.post('/api/followings', { FolloweeId: followButton.attr("data-user-id") })
-                    .done(doneAction)
-                    .fail(failAction);
-            } else {
-                $.ajax({
-                    url: "/api/followings/" + followButton.attr("data-user-id"),
-                    method: "DELETE"
-                }).done(doneAction)
-                    .fail(failAction);
-            }
-        });
+        if (followButton.hasClass("btn-default")) {
+
+            // WebApi read data from body. It read the key which is empty string to get data.
+            $.post('/api/followings', { FolloweeId: followButton.attr("data-user-id") })
+                .done(doneAction)
+                .fail(failAction);
+        } else {
+            $.ajax({
+                url: "/api/followings/" + followButton.attr("data-user-id"),
+                method: "DELETE"
+            }).done(doneAction)
+                .fail(failAction);
+        }
     }
 
     function doneAction() {
