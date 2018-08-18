@@ -9,17 +9,26 @@
     function toggleAttendances(e) {
         button = $(e.target);
         if (button.hasClass("btn-default")) {
-            // WebApi read data from body. It read the key which is empty string to get data.
-            $.post('/api/attendances', { GigId: button.attr("data-gig-id") })
-                .done(doneAction)
-                .fail(failAction);
+            createAttendance();
         } else {
-            $.ajax({
-                url: "/api/attendances/" + button.attr("data-gig-id"),
-                method: "DELETE"
-            }).done(doneAction).fail(failAction);
+            deleteAttendance();
         }
 
+    }
+
+    function createAttendance() {
+        // WebApi read data from body. It read the key which is empty string to get data.
+        $.post('/api/attendances', { GigId: button.attr("data-gig-id") })
+            .done(doneAction)
+            .fail(failAction);
+    }
+
+    function deleteAttendance() {
+        $.ajax({
+            url: "/api/attendances/" + button.attr("data-gig-id"),
+            method: "DELETE"
+        }).done(doneAction)
+            .fail(failAction);
     }
 
     function doneAction() {
