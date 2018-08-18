@@ -335,6 +335,7 @@
     </None>
     <None Include="Content\Site.less" />
     <Content Include="note.txt" />
+    <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

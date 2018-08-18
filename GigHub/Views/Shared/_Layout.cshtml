@@ -49,34 +49,35 @@
     </div>
 
     @Scripts.Render("~/bundles/lib")
+    @Scripts.Render("~/bundles/app")
     @RenderSection("scripts", required: false)
-<script type="text/x-template" id="notifications-template">
+    <script type="text/x-template" id="notifications-template">
         <ul class="notifications">
             <%
             _.each(notifications, function(notification){
             if(notification.type == 1){ %>
-                <li><span class="highlight"><%= notification.gig.artist.name%></span> has calceled the gig at <%= notification.gig.venue %> at <%= moment(notification.gig.dateTime).format("D MMM HH:mm") %>.</li>
+            <li><span class="highlight"><%= notification.gig.artist.name%></span> has calceled the gig at <%= notification.gig.venue %> at <%= moment(notification.gig.dateTime).format("D MMM HH:mm") %>.</li>
             <%  }
-            
+
             else if(notification.type == 2){
-                var changes = [],
-                    originalValues = [],
-                    newValues = [];
-                
-                if(notification.originalVenue != notification.gig.venue){
-                    changes.push('venue');
-                    originalValues.push(notification.originalVenue);
-                    newValues.push(notification.gig.venue);
-                }
-                
-                if(notification.originalDatetime != notification.gig.dateTime){
-                    changes.push('date/time');
-                    originalValues.push(moment(notification.originalDateTime).format("D MMM HH:mm"));
-                    newValues.push(moment(notification.gig.dateTime).format("D MMM HH:mm"));
-                }
-                %>
-                
-                <li><span class="highlight"><%= notification.gig.artist.name %></span> has changed the <%= changes.join(' and ') %> of the gig from <%= originalValues.join('/') %> to <%= newValues.join('/') %></li>
+            var changes = [],
+            originalValues = [],
+            newValues = [];
+
+            if(notification.originalVenue != notification.gig.venue){
+            changes.push('venue');
+            originalValues.push(notification.originalVenue);
+            newValues.push(notification.gig.venue);
+            }
+
+            if(notification.originalDatetime != notification.gig.dateTime){
+            changes.push('date/time');
+            originalValues.push(moment(notification.originalDateTime).format("D MMM HH:mm"));
+            newValues.push(moment(notification.gig.dateTime).format("D MMM HH:mm"));
+            }
+            %>
+
+            <li><span class="highlight"><%= notification.gig.artist.name %></span> has changed the <%= changes.join(' and ') %> of the gig from <%= originalValues.join('/') %> to <%= newValues.join('/') %></li>
             <%
             }
 
@@ -107,9 +108,9 @@
                         },
                         placement: "bottom"
                         //template: '< div class="popover popover-notifications" role="tooltip" > <div class="arrow"></div> <h3 class="popover-title"></h3> <div class="popover-content"></div></div>'
-                    }).on("shown.bs.popover", function() {
+                    }).on("shown.bs.popover", function () {
                         $.post("/api/notifications/markAsRead")
-                            .done(function() {
+                            .done(function () {
                                 $(".js-notifications-count").text("").addClass("hide");
                             });
                     });
