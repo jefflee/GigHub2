@@ -1,8 +1,11 @@
 ﻿var GigsController = (function iifeGigsConroller(attendanceService) {
     var button;
 
-    var init = function () {
-        $('.js-toggle-attendance').click(toggleAttendances);
+    var init = function (container) {
+        $(container).on("click", ".js-toggle-attendance", toggleAttendances);
+        //If there is 10 elements of ".js-toggle-attendance", it will create 10 functions. 
+        //It's not well. So, we use on function.
+        //$('.js-toggle-attendance').click(toggleAttendances);
 
     };
 
