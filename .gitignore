@@ -3,3 +3,4 @@ GigHub/bin/
 packages/
 GigHub/obj/Debug/GigHub.csproj.CopyComplete
 GigHub/obj/
+GigHub.Tests/obj/
