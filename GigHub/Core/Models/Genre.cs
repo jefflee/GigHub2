@@ -6,8 +6,9 @@ namespace GigHub.Core.Models
     {
         public byte Id { get; set; }
 
-        [Required]
-        [StringLength(255)]
+        //Move to GenreConfiguration
+        //[Required]
+        //[StringLength(255)]
         public string Name { get; set; }
     }
 }

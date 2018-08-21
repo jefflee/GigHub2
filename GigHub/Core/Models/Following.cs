@@ -5,12 +5,14 @@ namespace GigHub.Core.Models
 {
     public class Following
     {
-        [Key]
-        [Column(Order = 1)]
+        //Move to FollowingConfiguration
+        //[Key]
+        //[Column(Order = 1)]
         public string FollowerId { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
+        //Move to FollowingConfiguration
+        //[Key]
+        //[Column(Order = 2)]
         public string FolloweeId { get; set; }
 
         public ApplicationUser Follower { get; set; }

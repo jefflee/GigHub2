@@ -9,12 +9,14 @@ namespace GigHub.Core.Models
 
         public ApplicationUser Attendee { get; set; }
 
-        [Key]
-        [Column(Order = 1)] // Because we use composite key, we need to assign column order
+        //Move to AttendanceConfiguration
+        //[Key]
+        //[Column(Order = 1)] // Because we use composite key, we need to assign column order
         public int GigId { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
+        //Move to AttendanceConfiguration
+        //[Key]
+        //[Column(Order = 2)]
         public string AttendeeId { get; set; }
     }
 }
