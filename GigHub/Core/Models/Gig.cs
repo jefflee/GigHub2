@@ -14,18 +14,21 @@ namespace GigHub.Core.Models
 
         public ApplicationUser Artist { get; set; }
 
-        [Required]
+        //Move this Data annotation to ApplicationDbContext. Use FluentApih.
+        //[Required]
         public string ArtistId { get; set; }
 
         public DateTime DateTime { get; set; }
 
-        [Required]
-        [StringLength(255)]
+        //Move this Data annotation to ApplicationDbContext. Use FluentApih.
+        //[Required]
+        //[StringLength(255)]
         public string Venue { get; set; }
 
         public Genre Genre { get; set; }
 
-        [Required]
+        //Move this Data annotation to ApplicationDbContext. Use FluentApih.
+        //[Required]
         public byte GenreId { get; set; }
 
         public ICollection<Attendance> Attendances { get; private set; }

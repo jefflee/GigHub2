@@ -241,6 +241,7 @@
     <Compile Include="Core\Repositories\IApplicationUserRepository.cs" />
     <Compile Include="Core\Repositories\INotificationRepository.cs" />
     <Compile Include="Core\Repositories\IUserNotificationRepository.cs" />
+    <Compile Include="Persistence\EntityConfigurations\GigConfiguration.cs" />
     <Compile Include="Persistence\Repositories\ApplicationUserRepository.cs" />
     <Compile Include="Persistence\Repositories\NotificationRepository.cs" />
     <Compile Include="Persistence\Repositories\UserNotificationRepository.cs" />
@@ -439,7 +440,6 @@
   <ItemGroup>
     <Folder Include="Dtos\" />
     <Folder Include="Models\" />
-    <Folder Include="Repositories\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
