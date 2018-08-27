@@ -248,6 +248,7 @@
     <Compile Include="Persistence\EntityConfigurations\GigConfiguration.cs" />
     <Compile Include="Persistence\EntityConfigurations\NotificationConfiguration.cs" />
     <Compile Include="Persistence\EntityConfigurations\UserNotificationConfiguration.cs" />
+    <Compile Include="Persistence\IApplicationDbContext.cs" />
     <Compile Include="Persistence\Repositories\ApplicationUserRepository.cs" />
     <Compile Include="Persistence\Repositories\NotificationRepository.cs" />
     <Compile Include="Persistence\Repositories\UserNotificationRepository.cs" />

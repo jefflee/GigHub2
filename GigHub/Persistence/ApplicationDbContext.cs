@@ -5,7 +5,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace GigHub.Persistence
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
         //Need to set your model here, then EF will know it when it do code first migration.
         public DbSet<Gig> Gigs { get; set; }
