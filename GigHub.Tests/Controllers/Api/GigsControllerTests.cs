@@ -58,9 +58,9 @@ namespace GigHub.Tests.Controllers.Api
         {
             //Arrange
             var gig = new Gig() { ArtistId = _userId + "-" };
-           
+
             _mockRepository.Setup(r => r.GetGigWithAttendees(1)).Returns(gig);
-            
+
             //action
             var result = _controller.Cancel(1);
 
