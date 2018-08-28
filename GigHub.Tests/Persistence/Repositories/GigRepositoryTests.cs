@@ -49,5 +49,47 @@ namespace GigHub.Tests.Persistence.Repositories
             gigs.Should().BeEmpty();
 
         }
+
+        [TestMethod]
+        public void GetUpcomingGigsByArtist_GigIsCanceled_ShouldNotBeReturned()
+        {
+            //arrange
+            var gig = new Gig() { DateTime = DateTime.Now.AddDays(1), ArtistId = "1" };
+            gig.Cancel();
+
+            _mockGigs.SetSource(new[] { gig });
+
+            //action
+            var gigs = _repository.GetUpcomingGigsByArtist("1");
+
+            //assert
+            gigs.Should().BeEmpty();
+        }
+
+        [TestMethod]
+        public void GetUpcomingGigsByArtist_GigIsForADifferentArtist_ShouldNotBeReturned()
+        {
+            var gig = new Gig() { DateTime = DateTime.Now.AddDays(1), ArtistId = "1" };
+
+            _mockGigs.SetSource(new[] { gig });
+
+            var gigs = _repository.GetUpcomingGigsByArtist(gig.ArtistId + "-");
+
+            gigs.Should().BeEmpty();
+        }
+
+        [TestMethod]
+        public void GetUpcomingGigsByArtist_GigIsForTheGivenArtistAndIsInTheFuture_ShouldBeReturned()
+        {
+            var gig = new Gig() { DateTime = DateTime.Now.AddDays(1), ArtistId = "1" };
+
+            _mockGigs.SetSource(new[] { gig });
+
+            var gigs = _repository.GetUpcomingGigsByArtist(gig.ArtistId);
+
+            gigs.Should().Contain(gig);
+
+        }
+
     }
 }
