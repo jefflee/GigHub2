@@ -5,3 +5,5 @@ GigHub/obj/Debug/GigHub.csproj.CopyComplete
 GigHub/obj/
 GigHub.Tests/obj/
 GigHub.Tests/bin/
+GigHub.IntegrationTests/bin/
+GigHub.IntegrationTests/obj/
