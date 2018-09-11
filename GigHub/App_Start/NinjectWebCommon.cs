@@ -1,3 +1,5 @@
+using Ninject.Web.Common.WebHost;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(GigHub.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(GigHub.App_Start.NinjectWebCommon), "Stop")]
 
